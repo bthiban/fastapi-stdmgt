@@ -1,0 +1,15 @@
+[MASTER]
+ignore=migrations
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-function-docstring,
+    import-error,
+    line-too-long,
+    invalid-name,
+    wrong-import-order,
+    ungrouped-imports
+
+[FORMAT]
+max-line-length=100
