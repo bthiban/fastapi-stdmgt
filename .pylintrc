@@ -4,6 +4,7 @@ ignore=migrations
 [MESSAGES CONTROL]
 disable=
     missing-module-docstring,
+    missing-class-docstring,
     missing-function-docstring,
     import-error,
     line-too-long,
