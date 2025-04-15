@@ -15,3 +15,12 @@
 ## Run the app
 
     uvicorn app.main:app --reload
+
+## Ruff Format code
+
+    ruff format .
+    
+## Ruff check linting
+
+    ruff check .
+
