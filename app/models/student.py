@@ -4,11 +4,13 @@ import enum
 
 from app.core.database import Base
 
+
 # pylint: disable=too-few-public-methods
 class Gender(str, enum.Enum):
     male = "male"
     female = "female"
     other = "other"
+
 
 # pylint: disable=too-few-public-methods
 class Student(Base):

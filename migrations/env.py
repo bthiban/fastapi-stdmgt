@@ -6,7 +6,7 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 
 # ⬇️ Add your app to Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # ✅ Import your Base and models
 from app.core.database import Base
@@ -19,6 +19,7 @@ if config.config_file_name is not None:
 
 # ✅ Hook up metadata so Alembic can autogenerate
 target_metadata = Base.metadata
+
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode."""

@@ -5,9 +5,11 @@ from sqlalchemy.orm import Session
 
 app = FastAPI()
 
+
 @app.get("/")
 def home():
     return {"message": "Welcome!"}
+
 
 @app.get("/ping-db")
 def ping_db(db: Session = Depends(get_db)):
