@@ -1,14 +1,14 @@
 import sys
 import os
 from logging.config import fileConfig
+from typing import Any
 
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 
-# ⬇️ Add your app to Python path
+# Add app to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-# ✅ Import your Base and models
 from app.core.database import Base
 from app.models import user  # ⬅️ just user for now
 
@@ -17,7 +17,7 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# ✅ Hook up metadata so Alembic can autogenerate
+# Metadata for autogenerate support
 target_metadata = Base.metadata
 
 
@@ -37,8 +37,12 @@ def run_migrations_offline() -> None:
 
 def run_migrations_online() -> None:
     """Run migrations in 'online' mode."""
+    section: dict[str, Any] | None = config.get_section(config.config_ini_section)
+    if section is None:
+        raise RuntimeError("Alembic config section is missing or invalid")
+
     connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
+        section,
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
