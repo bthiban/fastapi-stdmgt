@@ -3,10 +3,12 @@ from sqlalchemy.sql import func
 from app.core.database import Base
 import enum
 
+# pylint: disable=too-few-public-methods
 class UserRole(str, enum.Enum):
     admin = "admin"
     staff = "staff"
 
+# pylint: disable=too-few-public-methods
 class User(Base):
     __tablename__ = "users"
 
