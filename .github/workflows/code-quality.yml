@@ -41,3 +41,18 @@ jobs:
         run: pip install ruff
       - name: Ruff Format Check
         run: ruff format --check
+
+  typecheck:
+    name: Static Type Checking with Pyright
+    runs-on: ubuntu-latest
+    needs: [install_dependencies]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Pyright
+        run: npm install -g pyright
+      - name: Run Pyright
+        run: pyright
