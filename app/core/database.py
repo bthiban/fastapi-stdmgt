@@ -5,7 +5,7 @@ from app.core.config import DATABASE_URL
 DATABASE_URL = DATABASE_URL.replace("mysql+pymysql", "mysql+asyncmy")
 
 engine = create_async_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+SessionLocal = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 Base = declarative_base()
 
 

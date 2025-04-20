@@ -10,7 +10,7 @@ async def get_all_students(db: AsyncSession):
 
 
 async def create_student(db: AsyncSession, student_in: StudentCreate):
-    student = Student(**student_in.dict())
+    student = Student(**student_in.model_dump())
     db.add(student)
     await db.commit()
     await db.refresh(student)
@@ -23,7 +23,7 @@ async def update_student(db: AsyncSession, student_id: int, student_in: StudentU
     if not student:
         return None
 
-    for key, value in student_in.dict(exclude_unset=True).items():
+    for key, value in student_in.model_dump(exclude_unset=True).items():
         setattr(student, key, value)
 
     await db.commit()

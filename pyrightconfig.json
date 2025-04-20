@@ -1,0 +1,33 @@
+{
+    "typeCheckingMode": "strict",
+  
+    "include": ["app"],
+    "exclude": [
+      "**/__pycache__",
+      ".venv",
+      "tests",
+      "migrations",
+      "alembic",
+      "scripts",
+      "env",
+      "app/core/database.py"  
+    ],
+  
+    "reportMissingImports": true,
+    "reportMissingTypeStubs": false,
+    "reportUnusedImport": true,
+    "reportUnusedClass": true,
+    "reportPrivateUsage": false,
+    "reportOptionalSubscript": true,
+    "reportOptionalMemberAccess": true,
+    "reportGeneralTypeIssues": true,
+    "reportUnnecessaryTypeIgnoreComment": true,
+    "reportUnnecessaryIsInstance": true,
+  
+    "useLibraryCodeForTypes": true,
+  
+    "strictListInference": true,
+    "strictDictionaryInference": true,
+    "strictSetInference": true
+  }
+  
