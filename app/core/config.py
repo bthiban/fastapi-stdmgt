@@ -13,7 +13,9 @@ DB_NAME = os.getenv("MYSQL_DB")
 _tmp_db_url: str
 
 if all([DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME]):
-    _tmp_db_url = f"mysql+asyncmy://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    _tmp_db_url = (
+        f"mysql+asyncmy://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    )
 else:
     _tmp_db_url = "sqlite+aiosqlite:///:memory:"
 
