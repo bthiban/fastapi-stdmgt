@@ -10,9 +10,11 @@ DB_PORT = os.getenv("MYSQL_PORT")
 DB_NAME = os.getenv("MYSQL_DB")
 
 # Fallback to SQLite in-memory for test/CI
+_tmp_db_url: str
+
 if all([DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME]):
-    DATABASE_URL = (
-        f"mysql+asyncmy://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    )
+    _tmp_db_url = f"mysql+asyncmy://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 else:
-    DATABASE_URL = "sqlite+aiosqlite:///:memory:"
+    _tmp_db_url = "sqlite+aiosqlite:///:memory:"
+
+DATABASE_URL = _tmp_db_url
