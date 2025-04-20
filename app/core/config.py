@@ -11,6 +11,8 @@ DB_NAME = os.getenv("MYSQL_DB")
 
 # Fallback to SQLite in-memory for test/CI
 if all([DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME]):
-    DATABASE_URL = f"mysql+asyncmy://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    DATABASE_URL = (
+        f"mysql+asyncmy://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    )
 else:
     DATABASE_URL = "sqlite+aiosqlite:///:memory:"
