@@ -10,7 +10,6 @@ from alembic import context
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from app.core.database import Base
-from app.models import user  # ⬅️ just user for now
 
 # Alembic Config
 config = context.config

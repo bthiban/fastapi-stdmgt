@@ -1,2 +1,2 @@
-from .user import User
-from .student import Student
+# from .user import User
+# from .student import Student
