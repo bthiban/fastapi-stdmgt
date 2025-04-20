@@ -28,3 +28,10 @@
 
     ruff check .
 
+## Before pushing to github
+
+- ruff check .
+- ruff format .
+- pyright
+
+
