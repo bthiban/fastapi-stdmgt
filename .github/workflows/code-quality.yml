@@ -63,7 +63,7 @@ jobs:
       - name: Run Pyright
         run: pyright
 
-    unit_testing:
+  unit_testing:
     name: Run Unit Tests with Pytest
     runs-on: ubuntu-latest
     needs: [install_dependencies]
