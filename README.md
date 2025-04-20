@@ -4,6 +4,10 @@
 
     pip install -r ./requirements.txt
 
+## Freeze
+
+    pip freeze > requirements.txt
+
 ## Enviroments
 
     MYSQL_HOST=
