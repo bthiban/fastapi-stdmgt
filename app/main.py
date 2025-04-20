@@ -1,17 +1,21 @@
-from sqlalchemy import text
-from fastapi import FastAPI, Depends
-from app.core.database import get_db
-from sqlalchemy.orm import Session
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.routers import routers
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",  # React dev server
+]
 
-@app.get("/")
-def home():
-    return {"message": "Welcome!"}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # or ["*"] to allow all (not recommended in prod)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-
-@app.get("/ping-db")
-def ping_db(db: Session = Depends(get_db)):
-    db.execute(text("SELECT 1"))
-    return {"message": "DB connected!"}
+# Register all routers
+for router in routers:
+    app.include_router(router)
