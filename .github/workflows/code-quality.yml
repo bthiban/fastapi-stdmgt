@@ -62,3 +62,28 @@ jobs:
         run: npm install -g pyright
       - name: Run Pyright
         run: pyright
+
+  test:
+    name: Run Unit Tests with Pytest
+    runs-on: ubuntu-latest
+    needs: [install_dependencies]
+    strategy:
+      matrix:
+        python-version: [3.11]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio httpx aiosqlite
+
+      - name: Run tests
+        run: pytest -v
+
