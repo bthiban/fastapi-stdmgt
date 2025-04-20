@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [install_dependencies]
     env:
-      DATABASE_URL: sqlite+aiosqlite:///:memory:
+      DATABASE_URL: 'sqlite+aiosqlite:///:memory:'
     steps:
       - uses: actions/checkout@v4
       - name: Install test dependencies
