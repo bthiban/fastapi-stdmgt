@@ -10,6 +10,11 @@ class Gender(str, enum.Enum):
     other = "other"
 
 
+class Status(str, enum.Enum):
+    active = "active"
+    inactive = "inactive"
+
+
 # pylint: disable=too-few-public-methods
 class Student(Base):
     __tablename__ = "students"
@@ -22,6 +27,8 @@ class Student(Base):
     email = Column(String(100))
     phone = Column(String(20))
     enrollment_year = Column(Integer)
+    status = Column(Enum(Status), nullable=False, server_default="active")
+    is_deleted = Column(Integer, nullable=False, server_default="0")
     created_at = Column(
         DateTime(timezone=True), server_default=text("CURRENT_TIMESTAMP")
     )
