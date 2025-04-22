@@ -5,6 +5,7 @@ from typing import Any
 
 from sqlalchemy import engine_from_config, pool
 from alembic import context
+from app.models import student, user  # noqa: F401
 
 # Add app to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
