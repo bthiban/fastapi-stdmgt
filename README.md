@@ -33,5 +33,8 @@
 - ruff check .
 - ruff format .
 - pyright
+- pytest -v
+
+
 
 
