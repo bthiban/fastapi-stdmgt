@@ -35,6 +35,10 @@
 - pyright
 - pytest -v
 
+## Preview migration
+
+    alembic upgrade head --sql
+
 
 
 
