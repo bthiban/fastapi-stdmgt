@@ -10,8 +10,7 @@ from app.services.student_service import (
 from app.schemas.student_schema import (
     StudentOut,
     StudentCreate,
-    StudentUpdate,
-    StudentDelete,
+    StudentUpdate
 )
 from typing import List
 
@@ -30,7 +29,7 @@ async def create_student_endpoint(
     return await create_student(db, student)
 
 
-@router.put("/{student_id}", response_model=StudentDelete)
+@router.put("/{student_id}", response_model=StudentUpdate)
 async def update_student_endpoint(
     student_id: int, student: StudentUpdate, db: AsyncSession = Depends(get_db)
 ):
