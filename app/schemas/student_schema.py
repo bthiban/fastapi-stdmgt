@@ -3,6 +3,8 @@ from datetime import datetime, date
 from typing import Optional
 from enum import Enum
 
+from app.models.student import Status
+
 
 class Gender(str, Enum):
     male = "male"
@@ -20,12 +22,20 @@ class StudentCreate(BaseModel):
     enrollment_year: Optional[int]
 
 
-class StudentUpdate(StudentCreate):
-    pass
+class StudentUpdate(BaseModel):
+    full_name: Optional[str] = None
+    dob: Optional[date] = None
+    gender: Optional[Gender] = None
+    address: Optional[str] = None
+    email: Optional[EmailStr] = None
+    phone: Optional[str] = None
+    enrollment_year: Optional[int] = None
 
 
 class StudentOut(StudentCreate):
     id: int
     created_at: datetime
+    status: Status
+    is_deleted: int
 
     model_config = {"from_attributes": True}

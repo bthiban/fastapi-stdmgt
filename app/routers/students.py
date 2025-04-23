@@ -25,7 +25,7 @@ async def create_student_endpoint(
     return await create_student(db, student)
 
 
-@router.put("/{student_id}", response_model=StudentUpdate)
+@router.patch("/{student_id}", response_model=StudentOut)
 async def update_student_endpoint(
     student_id: int, student: StudentUpdate, db: AsyncSession = Depends(get_db)
 ):
