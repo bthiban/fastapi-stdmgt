@@ -1,4 +1,4 @@
-name: Ruff
+name: Code Quality Check Point
 
 on: [push, pull_request]
 
