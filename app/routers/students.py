@@ -7,11 +7,7 @@ from app.services.student_service import (
     update_student,
     delete_student,
 )
-from app.schemas.student_schema import (
-    StudentOut,
-    StudentCreate,
-    StudentUpdate
-)
+from app.schemas.student_schema import StudentOut, StudentCreate, StudentUpdate
 from typing import List
 
 router = APIRouter(prefix="/students", tags=["students"])
