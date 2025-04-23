@@ -39,6 +39,11 @@
 
     alembic upgrade head --sql
 
+## Test Coverage
+
+    pytest --cov=app --cov-report=term --cov-report=html
+
+
 
 
 
