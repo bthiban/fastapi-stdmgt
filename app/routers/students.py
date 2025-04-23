@@ -1,12 +1,18 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.services.student_service import (
     get_all_students,
     create_student,
     update_student,
+    delete_student,
 )
-from app.schemas.student_schema import StudentOut, StudentCreate, StudentUpdate
+from app.schemas.student_schema import (
+    StudentOut,
+    StudentCreate,
+    StudentUpdate,
+    StudentDelete,
+)
 from typing import List
 
 router = APIRouter(prefix="/students", tags=["students"])
@@ -24,7 +30,7 @@ async def create_student_endpoint(
     return await create_student(db, student)
 
 
-@router.put("/{student_id}", response_model=StudentOut)
+@router.put("/{student_id}", response_model=StudentDelete)
 async def update_student_endpoint(
     student_id: int, student: StudentUpdate, db: AsyncSession = Depends(get_db)
 ):
@@ -32,3 +38,8 @@ async def update_student_endpoint(
     if not updated:
         raise HTTPException(status_code=404, detail="Student not found")
     return updated
+
+
+@router.delete("/{student_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_student_endpoint(student_id: int, db: AsyncSession = Depends(get_db)):
+    await delete_student(db, student_id)

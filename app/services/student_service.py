@@ -1,3 +1,5 @@
+from sqlalchemy import update
+
 from app.models.student import Student
 from app.schemas.student_schema import StudentCreate, StudentUpdate
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -39,3 +41,16 @@ async def update_student(db: AsyncSession, student_id: int, student_in: StudentU
     await db.commit()
     await db.refresh(student)
     return student
+
+
+async def delete_student(db: AsyncSession, student_id: int):
+    result = await db.execute(select(Student).where(Student.id == student_id))
+    student = result.scalar_one_or_none()
+
+    if not student:
+        raise HTTPException(status_code=404, detail="Student not found")
+
+    await db.execute(
+        update(Student).where(Student.id == student_id).values(is_deleted=1)
+    )
+    await db.commit()
